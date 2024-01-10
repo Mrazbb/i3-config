@@ -91,7 +91,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+c split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -101,7 +101,9 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+
+# TODO 
+# bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -130,28 +132,28 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+plus workspace number $ws1
-bindsym $mod+lcaron workspace number $ws2
-bindsym $mod+scaron workspace number $ws3
-bindsym $mod+ccaron workspace number $ws4
-bindsym $mod+tcaron workspace number $ws5
-bindsym $mod+zcaron workspace number $ws6
-bindsym $mod+yacute workspace number $ws7
-bindsym $mod+aacute workspace number $ws8
-bindsym $mod+iacute workspace number $ws9
-bindsym $mod+eacute workspace number $ws10
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+lcaron move container to workspace number $ws2
-bindsym $mod+Shift+scaron move container to workspace number $ws3
-bindsym $mod+Shift+ccaron move container to workspace number $ws4
-bindsym $mod+Shift+tcaron move container to workspace number $ws5
-bindsym $mod+Shift+zcaron move container to workspace number $ws6
-bindsym $mod+Shift+yacute move container to workspace number $ws7
-bindsym $mod+Shift+aacute move container to workspace number $ws8
-bindsym $mod+Shift+iacute move container to workspace number $ws9
-bindsym $mod+Shift+eacute move container to workspace number $ws10
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -191,11 +193,26 @@ bindsym $mod+r mode "resize"
 bindsym $mod+p exec gnome-screenshot -i 
 
 # go to sleep
-bindsym $mod+BackSpace exec systemctl suspend
+bindsym $mod+Backspace exec systemctl suspend 
+# go to next monitor
+bindsym $mod+o move workspace to output right
 
+exec --no-startup-id sleep 1 && /home/mrazbb/.config/scripts-my/keyboard.sh
+
+
+bindsym $mod+Shift+o exec xrandr --output eDP-1 --right-of HDMI-1
+bindsym $mod+Shift+p exec xrandr --auto
+
+
+#bindsym $mod+y exec "xdotool type '@'"
+bindsym $mod+y exec xdotool type '@'
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status
 }
+
+
+# reload:
+# i3-msg reload"xdotool key 191"

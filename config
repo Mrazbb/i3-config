@@ -38,8 +38,10 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulsemixer --change-volume +5 --max-volume 100 && $refresh_i3status 
+bindsym XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volume -5 --max-volume 100 && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -112,7 +114,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-# bindsym $mod+space focus mode_toggle
+bindsym $mod+q focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -196,12 +198,15 @@ bindsym $mod+p exec gnome-screenshot -i
 
 # go to sleep
 bindsym $mod+Backspace exec systemctl suspend 
-# go to next monitor
-bindsym $mod+o move workspace to output right
+# go to next monitocor
+bindsym $mod+o move workspace to output next
 
 
 
-bindsym $mod+Shift+o exec xrandr --output eDP-1 --right-of HDMI-1
+
+bindsym $mod+Shift+o exec xrandr --auto && xrandr --output eDP  --mode 1920x1200 --output HDMI-A-0 --mode 2560x1440 --above eDP
+
+
 bindsym $mod+Shift+p exec xrandr --auto
 
 

@@ -1,1 +1,1 @@
-apt install light pulseaudio-utils
+apt install light pulseaudio-utils pulsemixer
